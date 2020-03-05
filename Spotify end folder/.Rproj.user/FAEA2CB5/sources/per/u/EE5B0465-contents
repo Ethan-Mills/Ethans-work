@@ -1,0 +1,6 @@
+library(jsonlite)
+library(xlsx)
+#at this point im trying to export the information to excell so I can fix it. Xlsx does not work.
+#if R has an easier process that would be great since theres about 300,000 pieces of info in those 4
+data1 <- read_json("StreamingHistory0.json", flatten = TRUE)
+write.xlsx(data1, "StreamingHistory1`.xlsx")
