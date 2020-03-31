@@ -1,0 +1,2 @@
+options(cancensus.api_key='CensusMapper_e1b9908b65dcb10a0b2a319881b1cfe2')
+options(cancensus.cache_path =file.path("~"))
