@@ -46,7 +46,7 @@ B<-ggplot(Women3, aes(geometry=geometry, fill=pct, color="black"))+
 
 theme_set(theme_pubr())
 figure <- ggarrange(A, B,
-                    labels = c("  ", "  "),
+                    labels = c("A", "B"),
                     ncol = 2, nrow = 1)
 figure
 #what we see from this fighure is that in area's where mens distribution of earnings is low womens is higher.
