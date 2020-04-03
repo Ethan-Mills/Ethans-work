@@ -1,0 +1,28 @@
+install.packages("cancensus")
+install.packages("tidyverse")
+install.packages("viridis")
+library(cancensus)
+library(tidyverse)
+library(viridis)
+options(cancensus.api_key='CensusMapper_e1b9908b65dcb10a0b2a319881b1cfe2')
+
+toronto <- get_census(dataset='CA16', regions=list(CMA="35535"),
+                          vectors=c("v_CA16_2426","v_CA16_2427","v_CA16_2428","v_CA16_2429","v_CA16_2430",
+                                    "v_CA16_2431","v_CA16_2432","v_CA16_2433","v_CA16_2434","v_CA16_2435",
+                                    "v_CA16_2436","v_CA16_2437","v_CA16_2438","v_CA16_2439","v_CA16_2440",
+                                    "v_CA16_2441","v_CA16_2442"), labels="detailed", geo_format="sf", level='DA')
+
+glimpse(toronto)
+
+toronto2<-rename(toronto, "total income"=`v_CA16_2426: Total - Household after-tax income groups in 2015 for private households - 100% data`,
+                 rename(toronto, "Under 5k"=`v_CA16_2427: Under $5,000`)
+
+glimpse(toronto2)
+                 
+ggplot(toronto2, aes(geometry=geometry, fill="Income", color="black"))+
+  geom_sf(color="black") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'white')) +
+  scale_fill_distiller(palette="Reds", direction=1, name="%") +
+  labs(title="Mens distribution of earnings", caption="2015") +
+  NULL
